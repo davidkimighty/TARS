@@ -12,3 +12,6 @@ Simple implimentation of Active-Ragdoll in Unity.
 - [ ] Get up
 
 <img width="640" alt="Cactu" src="https://user-images.githubusercontent.com/32338791/109178801-96aebd80-77cc-11eb-8a61-9c2662642382.png">
+
+
+Plant Model : https://sketchfab.com/namdinh

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e6d58a4dc3e4111ab47102a8398abd, type: 3}
+  m_Name: ProjectReadme
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 0d77b87030ebe4ba7b43d81013c1a48f, type: 3}
+  title: Simple Active Ragdoll
+  sections:
+  - heading: Hello
+    text: This project demonstrates how an active-ragdoll can self balance and move
+      without any animations.
+    linkText: 
+    url: 
+  loadedLayout: 0
+  font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}

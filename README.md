@@ -2,16 +2,10 @@
 
 Simple implimentation of Active-Ragdoll in Unity.
 
-**Features**
-- [x] Self balance: Forward
-- [ ] Self balance: Backward
-- [ ] Self balance: Left
-- [ ] Self balance: Right
-- [x] Walk towards target
-- [x] Fall down
-- [ ] Get up
+### Quadrupedal Creature Movement
+![QuadrupedalCorn](https://user-images.githubusercontent.com/32338791/152670547-573b6c97-3a3d-4679-a38f-9637e114dc54.gif)
 
-<img width="640" alt="Cactu" src="https://user-images.githubusercontent.com/32338791/109178801-96aebd80-77cc-11eb-8a61-9c2662642382.png">
+### Bipedal Creature Movement
+![BipedalCorn](https://user-images.githubusercontent.com/32338791/152670545-02391013-e3e1-4e0a-8cb1-8dc76ea73b30.gif)
 
-
-Plant Model : https://sketchfab.com/namdinh
+![BipedalCornFall](https://user-images.githubusercontent.com/32338791/152670538-92fca0ed-a1ef-4904-b619-4e8b36f57c7f.gif)

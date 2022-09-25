@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: ProjectReadme
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 0d77b87030ebe4ba7b43d81013c1a48f, type: 3}
-  title: Simple Active Ragdoll
+  title: Simple Active-Ragdoll
   sections:
-  - heading: Hello
-    text: This project demonstrates how an active-ragdoll can self balance and move
-      without any animations.
+  - heading: About
+    text: Simple implimentation of Active-Ragdoll in Unity.
     linkText: 
     url: 
-  loadedLayout: 0
+  loadedLayout: 1
   font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}

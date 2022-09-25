@@ -114,7 +114,7 @@ public class ProjectReadmeEditor : Editor
         bodyStyle.wordWrap = true;
 
         titleStyle = new GUIStyle(bodyStyle);
-        titleStyle.fontSize = 80;
+        titleStyle.fontSize = 60;
         titleStyle.font = readme.Font;
 
         headingStyle = new GUIStyle(bodyStyle);

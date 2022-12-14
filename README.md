@@ -17,7 +17,7 @@
 </div>
 
 # About
-**Simple-ActiveRagdoll** is a Untiy package for creating physics based characters.
+**Simple Active-Ragdoll** is a Untiy package for creating physics based characters.
 
 #### [ Development Environment ]
 - **Unity 2021.3.13f1** URP

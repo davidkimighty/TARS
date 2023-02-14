@@ -32,21 +32,18 @@
 <th>Features</th>
 <th>Status</th>
 <th>GitHub Project Board</th>
-<th>Latest GitHub Milestone</th>
 </tr>
 
 <tr>
-<td><a href="https://github.com/hyunwookimbob/Simple-ActiveRagdoll/wiki/Ragdoll-Balance">Ragdoll Balance</a></td>
+<td><a href="https://github.com/hyunwookimbob/Simple-ActiveRagdoll/wiki/Ragdoll-Balance">Active Ragdoll</a></td>
 <td><kbd>In Progress</kbd></td>
-<td><a href="https://github.com/users/hyunwookimbob/projects/2/views/6?filterQuery=repo%3A%22hyunwookimbob%2FSimple-ActiveRagdoll%22++label%3A%22Ragdoll+Balance%22">Ragdoll Balance Board</a></td>
-<td><a href="https://github.com/hyunwookimbob/Simple-ActiveRagdoll/issues?q=milestone%3Av2.0+is%3Aclosed+label%3A%22Ragdoll+Balance%22">Ragdoll Balance v2.0 Milestone</a></td>
+<td><a href="https://github.com/users/hyunwookimbob/projects/2/views/6?filterQuery=repo%3A%22hyunwookimbob%2FSimple-ActiveRagdoll%22++label%3A%22Active+Ragdoll%22+">Active Ragdoll Board</a></td>
 </tr>
 
 <tr>
-<td><a href="https://github.com/hyunwookimbob/Simple-ActiveRagdoll/wiki/Ragdoll-Movement">Ragdoll Movement</a></td>
+<td><a href="https://github.com/hyunwookimbob/Simple-ActiveRagdoll/wiki/Ragdoll-Movement">IK Rig</a></td>
 <td><kbd>In Progress</kbd></td>
-<td><a href="https://github.com/users/hyunwookimbob/projects/2/views/6?filterQuery=repo%3A%22hyunwookimbob%2FSimple-ActiveRagdoll%22++label%3A%22Ragdoll+Movement%22">Ragdoll Movement Board</a></td>
-<td><a href="https://github.com/hyunwookimbob/Simple-ActiveRagdoll/issues?q=milestone%3Av2.0+is%3Aclosed+label%3A%22Ragdoll+Movement%22+">Ragdoll Movement v2.0 Milestone</a></td>
+<td><a href="https://github.com/users/hyunwookimbob/projects/2/views/6?filterQuery=repo%3A%22hyunwookimbob%2FSimple-ActiveRagdoll%22++label%3A%22IK+Rig%22+">IK Rig Board</a></td>
 </tr>
 
 </table>

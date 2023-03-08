@@ -19,13 +19,6 @@
 # About
 **Simple Active-Ragdoll** is a Untiy package for creating physics based characters.
 
-#### [ Development Environment ]
-- **Unity 2022.2.1f1** URP
-- macOS
-
-#### [ Dependencies ]
-- com.unity.inputsystem: 1.4.4
-
 ## Available Features
 <table>
 <tr>

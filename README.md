@@ -4,7 +4,7 @@
 
 <!-- PROJECT LOGO -->
 <div align="center">
-  <img src="Assets/ProjectInfo/Icons/CornLogo2.png" alt="Logo" width="130">
+  <img src="Docs/Corn.png" alt="Logo" width="130">
   <h1 align="center">Simple Active-Ragdoll</h1>
   <p align="center">
     Simple implimentation of Active-Ragdoll in Unity.<br />

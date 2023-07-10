@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace CollieMollie.ActiveRagdoll
+namespace SimpleActiveRagdoll
 {
-    [CreateAssetMenu(fileName = "IkLegMovement", menuName = "CollieMollie/ActiveRagdoll/IkLegMovement")]
+    [CreateAssetMenu(fileName = "IkLegMovement", menuName = "SimpleActiveRagdoll/IkLegMovement")]
     public class IkLegMovementPreset : ScriptableObject
     {
         public float StepLength = 0.3f;

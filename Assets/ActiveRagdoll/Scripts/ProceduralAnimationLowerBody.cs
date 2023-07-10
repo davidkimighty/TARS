@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace CollieMollie.ActiveRagdoll
+namespace SimpleActiveRagdoll
 {
     public class ProceduralAnimationLowerBody : MonoBehaviour
     {
-        #region Variable Field
         [SerializeField] private Transform _body = null;
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private float _stepDistance = 0.6f;
@@ -26,8 +23,6 @@ namespace CollieMollie.ActiveRagdoll
         private CancellationTokenSource _ctsLeft = new CancellationTokenSource();
         private CancellationTokenSource _ctsRight = new CancellationTokenSource();
 
-        #endregion
-
         private void Start()
         {
             _ikMoveInfoLeft.Init(_ikInfoLeft.IkTarget.position);
@@ -39,7 +34,6 @@ namespace CollieMollie.ActiveRagdoll
             UpdateFoot();
         }
 
-        #region Private Functions
         private void UpdateFoot()
         {
             Ray leftFootRay = new Ray(_body.position + (-_body.right * _ikInfoLeft.Spacing), Vector3.down);
@@ -83,8 +77,6 @@ namespace CollieMollie.ActiveRagdoll
                 }
             }
         }
-
-        #endregion
 
         [Serializable]
         public class TwoBoneIkInfo

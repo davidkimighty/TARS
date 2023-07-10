@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using CollieMollie.Helper;
 using UnityEngine;
 
-namespace CollieMollie.ActiveRagdoll
+namespace SimpleActiveRagdoll
 {
     [DefaultExecutionOrder(-100)]
     public class IkLeg : MonoBehaviour
     {
-        #region Variable Field
         [SerializeField] private Transform _ikTarget = null;
         [SerializeField] private Transform _ikHint = null;
 
@@ -28,8 +26,6 @@ namespace CollieMollie.ActiveRagdoll
 
         private IEnumerator _ikLegMovement = null;
         private IEnumerator _ikTargetUpdate = null;
-
-        #endregion
 
         #region Public Functions
         public void Init()
@@ -73,7 +69,6 @@ namespace CollieMollie.ActiveRagdoll
 
         #endregion
 
-        #region Private Functions
         private IEnumerator UpdateIkTarget()
         {
             while (true)
@@ -119,8 +114,6 @@ namespace CollieMollie.ActiveRagdoll
             _currentStep = targetPoint;
             done?.Invoke();
         }
-
-        #endregion
 
         private void OnDrawGizmos()
         {

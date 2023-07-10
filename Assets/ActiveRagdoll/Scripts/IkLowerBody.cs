@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace CollieMollie.ActiveRagdoll
+namespace SimpleActiveRagdoll
 {
     public class IkLowerBody : MonoBehaviour
     {
-        #region Variable Field
         [SerializeField] private Transform _body = null;
         [SerializeField] private IkLeg _leftLeg = null;
         [SerializeField] private IkLeg _rightLeg = null;
@@ -19,8 +17,6 @@ namespace CollieMollie.ActiveRagdoll
         private float _leftRightDelay = 0.5f;
 
         private IEnumerator _legMovement = null;
-
-        #endregion
 
         #region Public Functions
         public void Init()
@@ -54,7 +50,6 @@ namespace CollieMollie.ActiveRagdoll
 
         #endregion
 
-        #region Private Functions
         private IEnumerator LegMovement(IkLegMovementPreset preset, Action done)
         {
             _primaryLeg.MoveLeg(_body, preset);
@@ -66,8 +61,6 @@ namespace CollieMollie.ActiveRagdoll
 
             done?.Invoke();
         }
-
-        #endregion
     }
 
     public enum DominentLeg { Left, Right }

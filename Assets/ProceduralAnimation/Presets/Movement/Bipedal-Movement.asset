@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ae3c29407cb4335a93f3492d6a3312, type: 3}
+  m_Name: Bipedal-Movement
+  m_EditorClassIdentifier: 
+  WalkSpeed: 1
+  RunSpeed: 6
+  Acceleration: 1
+  Deceleration: 3
+  Gravity: -9.81
+  EnableGravity: 0
+  BodyHeight: 1.97
+  BodyRepositionSpeed: 1
+  RayLength: 2.5
+  StepDuration: 0.7
+  MinStepDurationFactor: 0.7
+  LegDelay: 0
+  BodyDelay: 0

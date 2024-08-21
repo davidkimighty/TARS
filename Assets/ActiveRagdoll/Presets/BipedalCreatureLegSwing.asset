@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da75a3fb38f9a4c1994e750d58e9b54b, type: 3}
+  m_Name: BipedalCreatureLegSwing
+  m_EditorClassIdentifier: 
+  targetRotations:
+  - upperRotation: {x: 80, y: 0, z: 0}
+    lowerRotation: {x: -80, y: 0, z: 0}
+    endRotation: {x: -20, y: 0, z: 0}
+    duration: 0.1
+  - upperRotation: {x: 5, y: 0, z: 0}
+    lowerRotation: {x: 5, y: 0, z: 0}
+    endRotation: {x: 20, y: 0, z: 0}
+    duration: 0.1

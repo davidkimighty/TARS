@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7728780062306681981}
-  - component: {fileID: 426944782357772872}
+  - component: {fileID: 2413270587585818463}
   - component: {fileID: 2683296917713921352}
   - component: {fileID: 4345432569808623197}
   m_Layer: 0
@@ -102,7 +102,7 @@ Transform:
   - {fileID: 9215476157360540659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &426944782357772872
+--- !u!114 &2413270587585818463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 941456686484704915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3412373b3b2352549b26f2d2a365b9df, type: 3}
+  m_Script: {fileID: 11500000, guid: 8141ce534295d784eadadcffb30f3465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _receivePlayerInput: 0
@@ -121,18 +121,17 @@ MonoBehaviour:
       m_Name: Move Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 419cbe27-39ef-4661-89fe-0563c6944ce6
+      m_Id: 0f22c27b-0e56-4ab7-99cf-6f3f596a1f79
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -3461205152616123657, guid: 1f1507ae293d6406e968f87c2b797472,
       type: 3}
-  _rootBody:
-    Body: {fileID: 3143896800952942585}
-    Legs:
-    - {fileID: 837320813362310685}
-    - {fileID: 3914061722815283238}
+  _rootBody: {fileID: 3143896800952942585}
+  _rootFeet:
+  - {fileID: 4326208632566823781}
+  - {fileID: 2094490648228048890}
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 4
@@ -149,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f814bd69e6ca475898c19dade1b3613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementController: {fileID: 426944782357772872}
+  _movementController: {fileID: 2413270587585818463}
   _lowerBodies:
   - Body: {fileID: 3143896800952942585}
     Legs:
@@ -198,7 +197,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -4875590492050644640, guid: 1f1507ae293d6406e968f87c2b797472,
       type: 3}
-  _movementController: {fileID: 426944782357772872}
+  _movementController: {fileID: 2413270587585818463}
   _preset: {fileID: 11400000, guid: eaf613989f53748e7ae08ea6523bd407, type: 2}
   _inputText: {fileID: 0}
 --- !u!1 &1082694456566193740

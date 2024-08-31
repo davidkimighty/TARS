@@ -11,20 +11,20 @@ namespace TAPS
         [HideInInspector] public bool CanTakeStep;
 
         [SerializeField] private Side _side;
+        [SerializeField] private LegPreset _legPreset;
         [SerializeField] private Transform _rayOrigin;
         [SerializeField] private Transform _ikTarget;
         [SerializeField] private Transform _foot;
-        [SerializeField] private LegPreset _legPreset;
+        [SerializeField] private Vector3 _footForwardAdjust = Vector3.one;
 
         private bool _isMoving;
-        private Quaternion _footStartRot;
         private Vector3 _targetPos;
         private IEnumerator _swingCoroutine;
         
         public Side Side => _side;
         public Transform Foot => _foot;
 
-        private void Awake()
+        private void OnEnable()
         {
             if (Physics.Raycast(_rayOrigin.position, Vector3.down, out RaycastHit hit, _legPreset.RayLength, _legPreset.GroundMask))
             {
@@ -32,7 +32,6 @@ namespace TAPS
                 _targetPos.y += _legPreset.FootHeightOffset;
                 _ikTarget.position = _targetPos;
             }
-            _footStartRot = _foot.rotation;
         }
         
         public bool CanSwing()
@@ -55,18 +54,19 @@ namespace TAPS
             return castPoint;
         }
         
-        public void ExecuteSwing(Vector3 targetPos, float stepDuration, float legDelay)
+        public void ExecuteSwing(Vector3 moveDir, Vector3 targetPos, float stepDuration, float legDelay)
         {
             _isMoving = true;
-            _swingCoroutine = PerformSwing(targetPos, stepDuration, legDelay);
+            _swingCoroutine = PerformSwing(moveDir, targetPos, stepDuration, legDelay);
             StartCoroutine(_swingCoroutine);
         }
 
-        private IEnumerator PerformSwing(Vector3 targetPos, float stepDuration, float legDelay)
+        private IEnumerator PerformSwing(Vector3 moveDir, Vector3 targetPos, float stepDuration, float legDelay)
         {
             float elapsedTime = 0f;
             Vector3 startPos = transform.position;
             targetPos.y += _legPreset.FootHeightOffset;
+            Quaternion footStartRot = _ikTarget.rotation;
             
             while (elapsedTime < stepDuration)
             {
@@ -79,12 +79,13 @@ namespace TAPS
                 Vector3 newPos = Vector3.Lerp(_ikTarget.position, targetPos + offset, stepSpeedFrac);
                 newPos.y += _legPreset.StepHeight * sinFrac * stepHeightFrac;
                 _ikTarget.position = newPos;
+                
+                Quaternion moveLookRot = Quaternion.LookRotation(moveDir, Vector3.up);
+                moveLookRot *= Quaternion.Euler(_footForwardAdjust);
+                _ikTarget.rotation =  Quaternion.Lerp(footStartRot, moveLookRot, stepSpeedFrac);
 
-                if (_legPreset.EnableSwingFootRotation)
-                {
-                    float swingFootAngle = _legPreset.SwingFootAngle * sinFrac;
-                    _ikTarget.rotation = _footStartRot *  Quaternion.Euler(swingFootAngle, 0f, 0f);
-                }
+                float swingFootAngle = _legPreset.SwingFootAngle * sinFrac;
+                _ikTarget.rotation = footStartRot *  Quaternion.Euler(swingFootAngle, 0f, 0f);
 
                 if (elapsedTime > legDelay)
                     NextLeg.CanTakeStep = true;
@@ -95,7 +96,7 @@ namespace TAPS
             
             _targetPos = targetPos + (transform.position - startPos);
             _ikTarget.position = _targetPos;
-            _ikTarget.rotation = _footStartRot;
+            _ikTarget.rotation = Quaternion.LookRotation(moveDir, Vector3.up) * Quaternion.Euler(_footForwardAdjust);
 
             CanTakeStep = _isMoving = false;
             NextLeg.CanTakeStep = true;

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace TAPS
 {
     [CreateAssetMenu(menuName = "TAPS/ProceduralAnimation/Body", fileName = "Body")]
-    public class ProceduralAnimationPreset : ScriptableObject
+    public class BodyPreset : ScriptableObject
     {
         public float StepDuration = 0.7f;
         public float MinStepDurationFactor = 0.7f;

@@ -17,12 +17,12 @@ namespace TAPS
         [SerializeField] private MovementController _movementController;
         [Tooltip("Index 0 is root.")]
         [SerializeField] private LowerBody[] _lowerBodies;
-        [SerializeField] private ProceduralAnimationPreset _preset;
+        [SerializeField] private BodyPreset _preset;
 
         private MoveData _moveData;
         private IEnumerator _LegMovementCoroutine;
 
-        private void Awake()
+        private void Start()
         {
             if (_movementController != null)
                 _movementController.OnMove += ReceiveMoveData;
@@ -66,7 +66,7 @@ namespace TAPS
 
                         Vector3 targetPos = leg.CalculateTargetPoint(_moveData.MoveDir, _moveData.IsRunning);
                         float legDelay = lowerBody.Legs.Length > 2 ? _preset.LegDelay : stepDuration;
-                        leg.ExecuteSwing(targetPos, stepDuration, legDelay);
+                        leg.ExecuteSwing(_moveData.MoveDir, targetPos, stepDuration, legDelay);
                     }
                         
                     if (_lowerBodies.Length > 1)

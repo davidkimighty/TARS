@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353598269837563269}
-  - component: {fileID: 362675169389765382}
+  - component: {fileID: 4466182526985750379}
   - component: {fileID: 6270626075153712017}
   - component: {fileID: 7983005398192468474}
   m_Layer: 0
@@ -262,7 +262,7 @@ Transform:
   - {fileID: 5483354528676346612}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &362675169389765382
+--- !u!114 &4466182526985750379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2483241721794367912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3412373b3b2352549b26f2d2a365b9df, type: 3}
+  m_Script: {fileID: 11500000, guid: 8141ce534295d784eadadcffb30f3465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _receivePlayerInput: 0
@@ -281,22 +281,21 @@ MonoBehaviour:
       m_Name: Move Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 67a14986-4a9e-4bfd-acd0-64fb81e55edf
+      m_Id: 3a3ede1f-9e11-4e1f-baf7-69a0c179d8bd
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -3461205152616123657, guid: 1f1507ae293d6406e968f87c2b797472,
       type: 3}
-  _rootBody:
-    Body: {fileID: 2384109810228794057}
-    Legs:
-    - {fileID: 7666998816729984283}
-    - {fileID: 906261241521378168}
-    - {fileID: 7822874237290419318}
-    - {fileID: 1285723257639446365}
-    - {fileID: 4317439577933877718}
-    - {fileID: 4602383841794577671}
+  _rootBody: {fileID: 2384109810228794057}
+  _rootFeet:
+  - {fileID: 2773988595951564863}
+  - {fileID: 4752338651028773536}
+  - {fileID: 8690501473855396514}
+  - {fileID: 6069093836320721992}
+  - {fileID: 4403523507633238402}
+  - {fileID: 7458416339141455893}
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 4
@@ -313,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f814bd69e6ca475898c19dade1b3613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementController: {fileID: 362675169389765382}
+  _movementController: {fileID: 4466182526985750379}
   _lowerBodies:
   - Body: {fileID: 2384109810228794057}
     Legs:
@@ -362,7 +361,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -4875590492050644640, guid: 1f1507ae293d6406e968f87c2b797472,
       type: 3}
-  _movementController: {fileID: 362675169389765382}
+  _movementController: {fileID: 4466182526985750379}
   _preset: {fileID: 11400000, guid: 672db0a25ce414c12ac8f3399590ffb4, type: 2}
   _inputText: {fileID: 0}
 --- !u!1 &2618927822376480608

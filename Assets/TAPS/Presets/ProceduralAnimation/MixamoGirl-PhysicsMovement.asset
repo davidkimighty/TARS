@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e1b5225fb1d614ba2917cf1aeb1fef, type: 3}
+  m_Name: MixamoGirl-PhysicsMovement
+  m_EditorClassIdentifier: 
+  WalkSpeed: 1
+  RunSpeed: 2
+  Acceleration: 3
+  MaxAcceleration: 7
+  SpringStrength: 26000
+  SpringDamper: 3000
+  RayLength: 2
+  FloatHeight: 1
+  CrouchHeight: 0.3
+  ExtendedHeight: 0.3
+  RayOffset: {x: 0, y: 0, z: 0}
+  RotationStrength: 300
+  RotationDamper: 30
+  RepositionStrength: 300
+  RepositionDamper: 150
+  UpDirThreshold: 0.4
+  CenterPointThreshold: 0.6
+  GetupDelayTime: 3

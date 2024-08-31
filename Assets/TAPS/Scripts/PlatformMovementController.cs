@@ -8,7 +8,7 @@ namespace TAPS
     {
         [SerializeField] private InputActionProperty _moveAction;
         [SerializeField] private InputActionProperty _runAction;
-        [SerializeField] private MovementController _movementController;
+        [SerializeField] private AxisMovementController _movementController;
         [SerializeField] private MovementPreset _preset;
         [SerializeField] private TMP_Text _inputText;
         

@@ -15,7 +15,6 @@ namespace TAPS
         public float RayLength = 2.5f;
         public LayerMask GroundMask;
         public float FootHeightOffset = 0.1f;
-        public bool EnableSwingFootRotation = true;
         public float SwingFootAngle = 60f;
     }
 }

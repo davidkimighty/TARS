@@ -5,9 +5,9 @@
 <!-- PROJECT LOGO -->
 <div align="center">
   <img src="Corn.png" alt="Logo" width="130">
-  <h1 align="center">TAPS</h1>
+  <h1 align="center">TARS</h1>
   <p align="center">
-    Totally Accurate Physics Simulator<br />
+    Totally Accurate Ragdoll Simulator<br />
     <br />
   </p>
 </div>

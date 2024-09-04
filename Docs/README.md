@@ -18,6 +18,9 @@ This project showcases a simple implementation of a physics-based character cont
 
 **Procedural Animation**
 
+![bipedal](https://github.com/user-attachments/assets/d55bb25c-8140-488c-844b-946c6a55b405)
+![quadrupedal](https://github.com/user-attachments/assets/e59dd082-d14b-42e9-a540-b9572384361a)
+
 
 **Physics based Procedural Animation**
 

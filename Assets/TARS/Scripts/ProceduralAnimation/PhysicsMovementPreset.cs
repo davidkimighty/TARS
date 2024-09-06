@@ -15,7 +15,6 @@ namespace TARS
         public float RayLength = 1.5f;
         public float FloatHeight = 1f;
         public float CrouchHeight = 0.3f;
-        public float ExtendedHeight = 0.3f;
         
         public float RotationStrength = 300f;
         public float RotationDamper = 70f;

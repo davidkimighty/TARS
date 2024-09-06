@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkStepLength: 0.3
   RunStepLength: 0.6
-  StepThreshold: 0.1
+  StepThreshold: 0.3
   StepHeight: 0.2
   StepHeightCurve:
     serializedVersion: 2
@@ -69,5 +69,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   FootHeightOffset: 0.8
-  EnableSwingFootRotation: 0
-  SwingFootAngle: 60
+  SwingFootAngle: 0

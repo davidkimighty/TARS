@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30e7b8f6755624b28a92d34f12afb3f2, type: 3}
-  m_Name: Quadrupedal-Leg
+  m_Name: TRex-Leg
   m_EditorClassIdentifier: 
-  WalkStepLength: 0.3
+  WalkStepLength: 0.9
   RunStepLength: 3
-  StepThreshold: 0.3
-  StepHeight: 0.15
+  StepThreshold: 1.5
+  StepHeight: 0.3
   StepHeightCurve:
     serializedVersion: 2
     m_Curve:
@@ -31,11 +31,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -4.079593
+      outSlope: -4.079593
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.013743222
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -64,9 +64,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RayLength: 1.5
+  RayLength: 4
   GroundMask:
     serializedVersion: 2
     m_Bits: 1
-  FootHeightOffset: 0.05
-  SwingFootAngle: 60
+  FootHeightOffset: 0.8
+  SwingFootAngle: 15

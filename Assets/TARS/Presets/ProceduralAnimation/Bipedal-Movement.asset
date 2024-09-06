@@ -18,10 +18,6 @@ MonoBehaviour:
   Deceleration: 3
   Gravity: -9.81
   EnableGravity: 0
-  BodyHeight: 1.97
-  BodyRepositionSpeed: 1
+  BodyHeight: 2
+  BodyRepositionSpeed: 0.8
   RayLength: 2.5
-  StepDuration: 0.7
-  MinStepDurationFactor: 0.7
-  LegDelay: 0
-  BodyDelay: 0

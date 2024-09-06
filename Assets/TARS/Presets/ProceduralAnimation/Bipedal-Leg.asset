@@ -69,5 +69,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   FootHeightOffset: 0.05
-  EnableSwingFootRotation: 1
-  SwingFootAngle: 45
+  SwingFootAngle: 25

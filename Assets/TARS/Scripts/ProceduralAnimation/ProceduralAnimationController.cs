@@ -14,22 +14,32 @@ namespace TARS
     
     public class ProceduralAnimationController : MonoBehaviour
     {
-        [SerializeField] private MovementController _movementController;
         [Tooltip("Index 0 is root.")]
         [SerializeField] private LowerBody[] _lowerBodies;
         [SerializeField] private BodyPreset _preset;
 
+        private IMovementControl _movementControl;
         private MoveData _moveData;
         private IEnumerator _LegMovementCoroutine;
 
+        private void Awake()
+        {
+            _movementControl = GetComponent<IMovementControl>();
+            if (_movementControl != null)
+                _movementControl.OnMove += ReceiveMoveData;
+
+            _moveData = new MoveData
+            {
+                MoveDir = transform.forward,
+                BodyForward = transform.right
+            };
+        }
+
         private void Start()
         {
-            if (_movementController != null)
-                _movementController.OnMove += ReceiveMoveData;
-
             if (_lowerBodies != null || _lowerBodies.Length > 0)
             {
-                SetLegPriorities();
+                SetLegPriorities(_moveData.MoveDir);
                 _LegMovementCoroutine = LowerBodyMovementLoop();
                 StartCoroutine(_LegMovementCoroutine);
             }
@@ -37,14 +47,11 @@ namespace TARS
 
         private void ReceiveMoveData(MoveData data)
         {
-            bool dirChanged = _moveData.MoveDir == Vector3.zero && _moveData.MoveDir != data.MoveDir;
-            if (dirChanged)
-            {
-                _moveData = data;
-                SetLegPriorities();
-                return;
-            }
+            float bodyForwardDot = Vector3.Dot(_moveData.MoveDir, data.MoveDir);
             _moveData = data;
+            
+            if (bodyForwardDot < 0)
+                SetLegPriorities(_moveData.MoveDir);
         }
         
         private IEnumerator LowerBodyMovementLoop()
@@ -62,11 +69,10 @@ namespace TARS
                     for (int j = 0; j < lowerBody.Legs.Length; j++)
                     {
                         Leg leg = lowerBody.Legs[j];
-                        if (!leg.CanSwing()) continue;
+                        if (!leg.CanSwing(_moveData.MoveDir, _moveData.IsRunning, out Vector3 targetPoint)) continue;
 
-                        Vector3 targetPos = leg.CalculateTargetPoint(_moveData.MoveDir, _moveData.IsRunning);
                         float legDelay = lowerBody.Legs.Length > 2 ? _preset.LegDelay : stepDuration;
-                        leg.ExecuteSwing(_moveData.MoveDir, targetPos, stepDuration, legDelay);
+                        leg.ExecuteSwing(_moveData.BodyForward, targetPoint, stepDuration, legDelay);
                     }
                         
                     if (_lowerBodies.Length > 1)
@@ -76,19 +82,19 @@ namespace TARS
             }
         }
 
-        private void SetLegPriorities()
+        private void SetLegPriorities(Vector3 moveDir)
         {
+            // Debug.Log("Leg priorities set");
             LowerBody root = _lowerBodies[0];
-            SortLegsByDistance(root, _moveData.MoveDir);
+            SortLegsByDistance(root, moveDir);
             LinkNextLeg(root);
             
             Leg firstLeg = root.Legs.First();
             firstLeg.CanTakeStep = true;
             Side startSide = firstLeg.Side;
             
-            for (int i = 0; i < _lowerBodies.Length; i++)
+            for (int i = 1; i < _lowerBodies.Length; i++)
             {
-                if (i == 0) continue;
                 LowerBody lowerBody = _lowerBodies[i];
                 SortLegsBySide(lowerBody, startSide);
                 LinkNextLeg(lowerBody);
@@ -108,11 +114,10 @@ namespace TARS
         
         private void SortLegsByDistance(LowerBody lowerBody, Vector3 moveDir)
         {
-            Vector3 centerPoint = lowerBody.Legs.Aggregate(moveDir, (current, leg) => current + leg.Foot.position);
-            centerPoint /= lowerBody.Legs.Length;
+            Vector3 comparePoint = lowerBody.Body.position + moveDir;
             
             lowerBody.Legs = lowerBody.Legs.OrderByDescending(leg =>
-                Vector3.Distance(leg.Foot.transform.position, centerPoint)).ToArray();
+                Vector3.Distance(leg.Foot.transform.position, comparePoint)).ToArray();
         }
 
         private void SortLegsBySide(LowerBody lowerBody, Side prioritySide)

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0b6644d21d8af34ebe009073aeab83e, type: 3}
-  m_Name: Bipedal-ProceduralAnimation
+  m_Name: TRex-Body
   m_EditorClassIdentifier: 
-  StepDuration: 0.9
+  StepDuration: 1
   MinStepDurationFactor: 0.7
-  LegDelay: 0.1
-  BodyDelay: 0.05
+  LegDelay: 0.3
+  BodyDelay: 0.3

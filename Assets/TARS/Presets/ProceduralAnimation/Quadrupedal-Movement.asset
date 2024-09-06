@@ -13,18 +13,11 @@ MonoBehaviour:
   m_Name: Quadrupedal-Movement
   m_EditorClassIdentifier: 
   WalkSpeed: 1
-  RunSpeed: 6
+  RunSpeed: 3
   Acceleration: 2
   Deceleration: 57
   Gravity: -9.81
   EnableGravity: 0
   BodyHeight: 1.13
-  BodySpeed: 3.7
+  BodyRepositionSpeed: 2
   RayLength: 1.5
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  StepDuration: 0.7
-  MinStepDurationFactor: 0.7
-  LegDelay: 0.1
-  BodyDelay: 0.13

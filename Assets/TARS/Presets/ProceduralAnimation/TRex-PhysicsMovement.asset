@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e1b5225fb1d614ba2917cf1aeb1fef, type: 3}
   m_Name: TRex-PhysicsMovement
   m_EditorClassIdentifier: 
-  WalkSpeed: 1
-  RunSpeed: 2
+  WalkSpeed: 3
+  RunSpeed: 5
   Acceleration: 3
   MaxAcceleration: 7
   SpringStrength: 26000
@@ -27,6 +27,6 @@ MonoBehaviour:
   RepositionDamper: 150
   JumpForce: 350
   FallMultiplier: 3
-  UpDirThreshold: 0.4
-  CenterPointThreshold: 0.6
+  OffBalanceUpDirThreshold: 0.4
+  OffBalanceCenterPointThreshold: 3
   GetupDelayTime: 3

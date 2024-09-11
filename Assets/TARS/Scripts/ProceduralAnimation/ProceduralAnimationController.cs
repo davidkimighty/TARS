@@ -18,15 +18,15 @@ namespace TARS
         [SerializeField] private LowerBody[] _lowerBodies;
         [SerializeField] private BodyPreset _preset;
 
-        private IMovementControl _movementControl;
+        private IMovement _movement;
         private MoveData _moveData;
         private IEnumerator _LegMovementCoroutine;
 
         private void Awake()
         {
-            _movementControl = GetComponent<IMovementControl>();
-            if (_movementControl != null)
-                _movementControl.OnMove += ReceiveMoveData;
+            _movement = GetComponent<IMovement>();
+            if (_movement != null)
+                _movement.OnMove += ReceiveMoveData;
 
             _moveData = new MoveData
             {
@@ -37,7 +37,7 @@ namespace TARS
 
         private void Start()
         {
-            if (_lowerBodies != null || _lowerBodies.Length > 0)
+            if (_lowerBodies != null && _lowerBodies.Length > 0)
             {
                 SetLegPriorities(_moveData.MoveDir);
                 _LegMovementCoroutine = LowerBodyMovementLoop();
@@ -48,7 +48,7 @@ namespace TARS
         private void ReceiveMoveData(MoveData data)
         {
             float bodyForwardDot = Vector3.Dot(_moveData.MoveDir, data.MoveDir);
-            _moveData = data;
+            _moveData.UpdateData(data);
             
             if (bodyForwardDot < 0)
                 SetLegPriorities(_moveData.MoveDir);
@@ -69,10 +69,10 @@ namespace TARS
                     for (int j = 0; j < lowerBody.Legs.Length; j++)
                     {
                         Leg leg = lowerBody.Legs[j];
-                        if (!leg.CanSwing(_moveData.MoveDir, _moveData.IsRunning, out Vector3 targetPoint)) continue;
+                        if (!leg.CanSwing()) continue;
 
                         float legDelay = lowerBody.Legs.Length > 2 ? _preset.LegDelay : stepDuration;
-                        leg.ExecuteSwing(_moveData.BodyForward, targetPoint, stepDuration, legDelay);
+                        leg.ExecuteSwing(_moveData, stepDuration, legDelay);
                     }
                         
                     if (_lowerBodies.Length > 1)

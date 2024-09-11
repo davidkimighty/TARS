@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace TARS
 {
-    public class PhysicsMovementController : MonoBehaviour, IMovementControl
+    public class PhysicsMovementController : MonoBehaviour, IMovement
     {
         public event Action<MoveData> OnMove;
         public event Action<bool> OnBalance;
@@ -18,6 +18,7 @@ namespace TARS
         [SerializeField] private InputActionProperty _moveInputAction;
         [SerializeField] private InputActionProperty _jumpInputAction;
 
+        private Camera _mainCam;
         private Vector3 _moveInput;
         private bool _hasInput;
         private Vector3 _moveDir;
@@ -43,6 +44,7 @@ namespace TARS
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            _mainCam = Camera.main;
 
             _moveInput = _moveDir = _body.transform.forward;
             _lookRotation = Quaternion.LookRotation(_moveDir);
@@ -55,8 +57,8 @@ namespace TARS
             (bool isHit, RaycastHit rayHit) = CastRay(_ignoreLayer);
             Vector3 centerPoint = MovementUtils.CalculateCenterPoint(_rootFeet);
             
-            // if (_balanceState)
-            //     _balanceState = isHit && CheckOnBalance(centerPoint);
+            if (_balanceState)
+                _balanceState = isHit && CheckOnBalance(centerPoint);
             
             if (_balanceState)
             {
@@ -94,7 +96,7 @@ namespace TARS
         
         public void Move(Vector3 moveInput)
         {
-            _moveDir = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * _moveInput;
+            _moveDir = Quaternion.Euler(0, _mainCam.transform.eulerAngles.y, 0) * _moveInput;
             
             Vector3 targetVel = _moveDir * _targetSpeed;
             _currentVel = Vector3.MoveTowards(_currentVel, targetVel, _movementPreset.Acceleration * Time.fixedDeltaTime);
@@ -127,44 +129,18 @@ namespace TARS
 
         public void InvokeOnMove(MoveData moveData) => OnMove?.Invoke(moveData);
 
-        private void Balance(bool isHit, RaycastHit rayHit, Vector3 feetCenterPoint)
+        public void Rotate(Vector3 moveDir, ref Quaternion lookRot)
         {
-            if (_previousBalanceState != _balanceState && _balanceState)
-                OnBalance?.Invoke(true);
+            if (_hasInput)
+                lookRot = Quaternion.LookRotation(moveDir);
             
-            _previousBalanceState = _balanceState;
-            if (!isHit) return;
-            
-            _elapsedTimeBeforeGetup = 0f;
-            
-            RepositionBody(feetCenterPoint);
-            Rotation(_moveDir, ref _lookRotation);
-            Floating(rayHit);
-        }
-
-        private void GetUp(bool isHit, RaycastHit rayHit)
-        {
-            if (_previousBalanceState != _balanceState && !_balanceState)
-                OnBalance?.Invoke(false);
-            
-            _previousBalanceState = _balanceState;
-            if (rayHit.transform == null || !isHit) return;
-            
-            if (_elapsedTimeBeforeGetup < _movementPreset.GetupDelayTime)
-            {
-                _elapsedTimeBeforeGetup += Time.deltaTime;
-                return;
-            }
-
-            Rotation(_moveDir, ref _lookRotation);
-            Floating(rayHit);
-            
-            if (_previousBalanceState != _balanceState && !_balanceState)
-                OnBalance?.Invoke(true);
-            _balanceState = true;
+            Quaternion targetRotation = MovementUtils.ShortestRotation(lookRot, _body.rotation);
+            targetRotation.ToAngleAxis(out float angle, out Vector3 axis);
+            _body.AddTorque(axis.normalized * (angle * Mathf.Deg2Rad * _movementPreset.RotationStrength) -
+                            _body.angularVelocity * _movementPreset.RotationDamper);
         }
         
-        private void Jump()
+        public void Jump()
         {
             if (!_grounded)
             {
@@ -183,15 +159,62 @@ namespace TARS
             }
         }
         
-        private void Rotation(Vector3 moveDir, ref Quaternion lookRot)
+        private void ReadMoveInput(InputAction.CallbackContext context)
         {
-            if (_hasInput)
-                lookRot = Quaternion.LookRotation(moveDir);
+            Vector2 rawInput = context.ReadValue<Vector2>();
+            _hasInput = rawInput != Vector2.zero;
+            _moveInput = Vector3.right * rawInput.x + Vector3.forward * rawInput.y;
+        }
+        
+        private void ReadJumpInput(InputAction.CallbackContext context)
+        {
+            _jumpInput = context.ReadValueAsButton();
+        }
+        
+        private void Balance(bool isHit, RaycastHit rayHit, Vector3 feetCenterPoint)
+        {
+            if (_previousBalanceState != _balanceState && _balanceState)
+                OnBalance?.Invoke(true);
             
-            Quaternion targetRotation = ShortestRotation(lookRot, _body.rotation);
-            targetRotation.ToAngleAxis(out float angle, out Vector3 axis);
-            _body.AddTorque(axis.normalized * (angle * Mathf.Deg2Rad * _movementPreset.RotationStrength) -
-                            _body.angularVelocity * _movementPreset.RotationDamper);
+            _previousBalanceState = _balanceState;
+            if (!isHit) return;
+            
+            _elapsedTimeBeforeGetup = 0f;
+            
+            RepositionBody(feetCenterPoint);
+            Rotate(_moveDir, ref _lookRotation);
+            Floating(rayHit);
+        }
+        
+        private bool CheckOnBalance(Vector3 centerPoint)
+        {
+            float upDirDot = Vector3.Dot(_body.transform.up, Vector3.up);
+            Vector3 centerPointLocal = _body.transform.InverseTransformPoint(centerPoint);
+            centerPointLocal.y = 0f;
+            return upDirDot > _movementPreset.OffBalanceUpDirThreshold &&
+                   centerPointLocal.magnitude < _movementPreset.OffBalanceCenterPointThreshold;
+        }
+
+        private void GetUp(bool isHit, RaycastHit rayHit)
+        {
+            if (_previousBalanceState != _balanceState && !_balanceState)
+                OnBalance?.Invoke(false);
+            
+            _previousBalanceState = _balanceState;
+            if (rayHit.transform == null || !isHit) return;
+            
+            if (_elapsedTimeBeforeGetup < _movementPreset.GetupDelayTime)
+            {
+                _elapsedTimeBeforeGetup += Time.deltaTime;
+                return;
+            }
+
+            Rotate(_moveDir, ref _lookRotation);
+            Floating(rayHit);
+            
+            if (_previousBalanceState != _balanceState && !_balanceState)
+                OnBalance?.Invoke(true);
+            _balanceState = true;
         }
         
         private void Floating(RaycastHit rayHit)
@@ -214,41 +237,5 @@ namespace TARS
             bool isHit = Physics.Raycast(ray, out RaycastHit rayHit, _movementPreset.RayLength, ~layer);
             return (isHit, rayHit);
         }
-        
-        private bool CheckOnBalance(Vector3 centerPoint)
-        {
-            float upDirDot = Vector3.Dot(_body.transform.up, Vector3.up);
-            Vector3 centerPointLocal = _body.transform.InverseTransformPoint(centerPoint);
-            centerPointLocal.y = 0f;
-
-            return upDirDot > _movementPreset.UpDirThreshold &&
-                   centerPointLocal.magnitude < _movementPreset.CenterPointThreshold;
-        }
-        
-        private void ReadMoveInput(InputAction.CallbackContext context)
-        {
-            Vector2 rawInput = context.ReadValue<Vector2>();
-            _hasInput = rawInput != Vector2.zero;
-            _moveInput = Vector3.right * rawInput.x + Vector3.forward * rawInput.y;
-        }
-        
-        private void ReadJumpInput(InputAction.CallbackContext context)
-        {
-            _jumpInput = context.ReadValueAsButton();
-        }
-        
-        private Quaternion ShortestRotation(Quaternion a, Quaternion b)
-        {
-            if (Quaternion.Dot(a, b) < 0)
-                return a * Quaternion.Inverse(Multiply(b, -1f));
-            return a * Quaternion.Inverse(b);
-        }
-
-        private Quaternion Multiply(Quaternion q, float scalar)
-        {
-            return new Quaternion(q.x * scalar, q.y * scalar, q.z * scalar, q.w * scalar);
-        }
-        
-
     }
 }

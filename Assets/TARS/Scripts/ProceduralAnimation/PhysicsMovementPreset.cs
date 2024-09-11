@@ -24,8 +24,8 @@ namespace TARS
         public float JumpForce = 20f;
         public float FallMultiplier = 3f;
         
-        public float UpDirThreshold = 0.4f;
-        public float CenterPointThreshold = 0.6f;
+        public float OffBalanceUpDirThreshold = 0.4f;
+        public float OffBalanceCenterPointThreshold = 0.6f;
         public float GetupDelayTime = 3f;
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e7b8f6755624b28a92d34f12afb3f2, type: 3}
   m_Name: TRex-Leg
   m_EditorClassIdentifier: 
-  WalkStepLength: 0.9
+  WalkStepLength: 1
   RunStepLength: 3
-  StepThreshold: 1.5
-  StepHeight: 0.3
+  StepThreshold: 1.2
+  StepHeight: 0.15
   StepHeightCurve:
     serializedVersion: 2
     m_Curve:
@@ -55,8 +55,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

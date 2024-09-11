@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace TARS
 {
-    public class AxisMovementController : MonoBehaviour, IMovementControl
+    public class AxisMovementController : MonoBehaviour, IMovement
     {
         public event Action<MoveData> OnMove;
         
@@ -76,6 +76,9 @@ namespace TARS
         }
 
         public void InvokeOnMove(MoveData moveData) => OnMove?.Invoke(moveData);
+        public void Rotate(Vector3 moveDir, ref Quaternion lookRot) { } // empty
+
+        public void Jump() { } // empty
 
         public void SetMoveDirection(Vector3 dir)
         {

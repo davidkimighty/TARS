@@ -1,0 +1,38 @@
+{
+  "name": "com.davidkimighty.tars",
+  "version": "0.2.0",
+  "displayName": "TARS",
+  "description": "Procedural leg locomotion system and active ragdoll system.",
+  "unity": "6000.5",
+  "keywords": [
+    "procedural animation",
+    "locomotion",
+    "ik",
+    "ragdoll",
+    "physics"
+  ],
+  "author": {
+    "name": "Hyunwoo Kim",
+    "url": "https://github.com/davidkimighty"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidkimighty/TARS.git"
+  },
+  "dependencies": {
+    "com.unity.modules.physics": "1.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Locomotion",
+      "description": "Human, dog and spider rigs in procedural, semi physics, hybrid physics and full physics versions. Requires Input System and URP.",
+      "path": "Samples~/Locomotion"
+    },
+    {
+      "displayName": "Active Ragdoll",
+      "description": "Bipedal and quadrupedal active ragdoll creatures. Requires URP.",
+      "path": "Samples~/ActiveRagdoll"
+    }
+  ]
+}

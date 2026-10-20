@@ -1,0 +1,14 @@
+{
+    "name": "TARS.ActiveRagdoll",
+    "rootNamespace": "TARS.ActiveRagdoll",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

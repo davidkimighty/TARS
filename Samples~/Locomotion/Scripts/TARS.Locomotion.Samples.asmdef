@@ -1,0 +1,17 @@
+{
+    "name": "TARS.Locomotion.Samples",
+    "rootNamespace": "TARS.Locomotion.Samples",
+    "references": [
+        "TARS.Locomotion",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
